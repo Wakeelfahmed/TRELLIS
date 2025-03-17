@@ -1,4 +1,5 @@
 import os
+os.environ['SPCONV_ALGO'] = 'native'        # Can be 'native' or 'auto', default is 'auto'.
 import numpy as np
 import imageio
 from PIL import Image
@@ -32,8 +33,14 @@ for subdir in subdirs:
     outputs = pipeline.run_multi_image(
         images,
         seed=1,
-        sparse_structure_sampler_params={"steps": 12, "cfg_strength": 7.5},
-        slat_sampler_params={"steps": 12, "cfg_strength": 3},
+        sparse_structure_sampler_params={
+            "steps": 12,
+            "cfg_strength": 7.5
+        },
+        slat_sampler_params={
+            "steps": 12,
+            "cfg_strength": 3
+        },
     )
 
     # Create output directory
